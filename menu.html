@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>京东无延迟效果</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.wrap{
+			position: relative;
+			width:200px;
+			left:50px;
+			top:50px; 
+		}
+		ul{
+			padding: 15px 0;
+			margin:0;
+			list-style: none;;
+			background: #6c6669;
+			color:white;
+			border-right-width: 0;
+
+			}
+	   li{
+	   	  height: 30px;
+	   	  line-height: 30px;
+	   	  padding-left:12px;
+	   	  cursor: pointer;
+	   	  font-size: 14px;
+	   	  position: relative;
+	   }
+
+	   li.active{
+	   	 background: #999395;
+	   }
+	   li span:hover{
+	   	   color:red;
+	   }
+	   .none{
+	   	 display: none;
+	   } 
+	   #sub{
+	   	 width:600px;
+	   	 height:300px;
+	   	 position: absolute;
+	   	 border:1px solid #f7f7f7;
+	   	 background: #f7f7f7;
+	   	 box-shadow: 2px 0 5px  rgba(0,0,0,.3);
+	   	 left:200px;
+	   	 top:0;
+	   	 box-sizing:border-box;
+	   	 margin:0;
+	   	 padding:10px;
+	   }
+	   .sub_content dl {
+	   	  overflow: hidden;
+	   }
+	   .sub_content dt{
+	   	 float:left;
+	   	 width:70px;
+	   	 font-weight: bold;
+	   	 clear: left;
+	   	 position: relative;
+	   }
+	   .sub_content dd{
+	   	  float:left;
+	   	  margin-left: 5px;
+	   	  border-top:1px solid #eee;
+	   	  margin-bottom:5px;
+	   }
+	   .sub_content dt i{
+             width:4px;
+             height:14px;
+            /* 这里其中的9代表的font-size,14代表的是line-height，这里其中是简写*/
+             font:400 9px/14px consolas;
+             position: absolute;
+             right:5px;
+	   }
+	</style>
+	<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js">
+</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+           var sub = $("#sub");
+           var activeRow;
+           var activeMenu;
+           var timer;
+           var mouseInSub=false;
+
+           sub.on('mouseenter',function(e){
+                mouseInSub=true;
+           }).on('mouseleave',function(e){
+           	  mouseInSub=false;
+           });
+
+
+           $("#test").on('mouseenter',function(e){
+           	   sub.removeClass("none");
+           })
+            .on('mouseleave',function(e){
+           	  sub.addClass("none");
+           	  if(activeRow){
+           	  	 activeRow.removeClass('active');
+           	  	 activeRow=null;
+           	  }
+           	  if(activeMenu){
+           	  	 activeMenu.removeClass('active');
+           	  	 activeMenu=null;
+           	  }
+           })
+            .on('mouseenter','li',function(e){
+              if(!activeRow){
+              	activeRow=$(e.target).addClass('active');
+              	activeMenu = $("#"+activeRow.data('id'));
+              	activeMenu.removeClass('none');
+              	return;
+              }
+
+               //这里加入其中的一个去抖的概念
+               if(timer){
+               	 clearTimeout(timer);
+               }
+              timer = setTimeout(function(){
+              	  if(mouseInSub){
+              	  	 return;
+
+              	  }
+                  activeRow.removeClass('active');
+	              activeMenu.addClass("none");
+
+	              activeRow=$(e.target);
+	              activeRow.addClass('active');
+	              activeMenu = $("#"+activeRow.data('id'));
+	              activeMenu.removeClass("none");
+	              timer=null;
+              },300);
+           })  
+		});
+	</script>
+</head>
+<body>
+<div class="wrap" id="test">
+	 <ul >
+	   	  <li data-id="a">
+	   	  	 <span>1</span>
+	   	  </li>
+	   	  <li data-id="b">
+	   	  	 <span>2</span>
+	   	  </li>
+	   	  <li data-id="c">
+	   	  	<span>3</span>
+	   	  </li>
+	   	  <li data-id="d">
+	   	  	<span>4</span>
+	   	  </li>
+   </ul>
+   <div id="sub" class="none">
+   	    <div id="a" class="sub_content none">
+   	    	<dl>
+   	    		<dt>1<i>&gt;</i></dt>
+   	    		<dd>
+   	    			one
+   	    		</dd>
+   	    	</dl>
+   	    </div>
+   	    <div id="b" class="sub_content none">
+   	    	<dl>
+   	    		<dt>2<i>&gt;</i></dt>
+   	    		<dd>
+   	    			one
+   	    		</dd>
+   	    	</dl>
+
+   	    </div>
+   	    <div id="c" class="sub_content none">
+   	    	<dl>
+   	    		<dt>3<i>&gt;</i></dt>
+   	    		<dd>
+   	    			one
+   	    		</dd>
+   	    	</dl>
+   	    </div>
+   	    <div id="d" class="sub_content none">
+   	    	<dl>
+   	    		<dt>4<i>&gt;</i></dt>
+   	    		<dd>
+   	    			one
+   	    		</dd>
+   	    	</dl>
+   	    </div>
+   </div>
+</div>
+</body>
+</html>
