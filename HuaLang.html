@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>图片画廊</title>
+	 <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <style type="text/css">
+       *{
+			padding:0;
+			margin:0;
+       }
+       html,body{
+       	  background-color: #222;
+       	  width:100%;
+       	  height:100%;
+       }
+       #content{
+       	   width:100%;
+		   height:100%;
+       }
+
+
+
+       /*修饰舞台结构*/
+       .stage{
+       	 position: relative;
+       	 width:100%;
+       	 height:680px;
+       }
+
+
+      /* image-start*/
+         .img-sec{
+         	position: relative;
+         	width:100%;
+         	height:100%;
+         	overflow: hidden;
+         	background-color: #ddd;
+         }
+       /*image-end*/
+
+
+
+       .controller-nav{
+       	   position: absolute;
+       	   left:0; bottom:30px;
+       	   z-index: 100;
+       	   width:100%;
+       	   text-align: center;
+       }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+	<script type="text/babel">
+		var GalleryByReactApp = React.createClass({
+			render:function(){
+			      return (
+                    <section className="stage">
+                    	<section classNmae="img-sec">
+                    		
+                    	</section>
+                    	<nav className="controller-nav">
+                    		
+                    	</nav>
+                    </section> 
+			      );
+			}
+		});
+    ReactDOM.render(
+        <GalleryByReactApp />,
+        document.getElementById("content")
+    )
+	</script>
+</body>
+</html>
