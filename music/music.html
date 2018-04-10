@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>音乐播放器</title>
+	<link rel="stylesheet" type="text/css" href="music.css" />
+	<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="music.js"></script>
+</head>
+<body>
+     <!-- 播放器容器 -->
+	<div class="player">
+	    <!-- 音乐播放器名称 --> 
+		<div class="header">
+			<!-- 音乐播放器 -->
+		</div>
+
+		<!-- 音乐专辑图 -->
+		<div class="albumPic">
+			
+		</div>
+        
+        <!-- 音乐信息 -->
+		<div class="trackInfo">
+		    歌曲名字
+			<div class="name">
+				 小猪猪
+			</div>
+			<!-- 歌手 -->
+			<div class="artist">
+				00000
+			</div>
+			<!-- 专辑名 -->
+			<div class="album">
+				111111
+			</div>
+
+
+			<!-- 播放进度条 -->
+        <div class="progress"></div>
+
+		<br />
+        <!-- 控制区 --> 
+        <div class="controls">
+            <!-- 播放-->
+            <div class="play">
+                <i class="icon-play"></i>
+            </div>
+
+            <!-- 上一曲 -->
+            <div class="previous">
+                <i class="icon-previous">pre</i>
+            </div>
+
+            <!-- 下一曲 -->
+            <div class="next">
+                <i class="icon-next">net</i>
+            </div>
+
+        </div>      
+
+        <!-- 播放时间  -->
+        <div class="time">
+
+            <!-- 当前时间 -->
+            <div class="current" style="float:left;"></div>
+
+            <!-- 歌曲总时间 -->
+            <div class="total" style="float:right;"></div>
+
+        </div>
+
+        <!-- 音频控件 -->
+        <audio  id="audio" controls>
+	        <source src=""  type="audio/mpeg"/>
+        </audio>
+	</div> 
+</body>
+</html> 
