@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建自己的websocket</title>
+	<script type="text/javascript" src="socket.io.js"></script>
+</head>
+<body>
+	<h1>char room</h1>
+	<input id="sentTxt" type="text" />
+	<button id="sentBtn">发送</button>
+	<script type="text/javascript">
+		var socket = io("ws://localhost:3000/");
+		function showMessage(str,type){
+			var div = document.createElement('div');
+			div.innerHTML=str;
+			if(type=='enter'){
+				div.style.color="blue";
+			}
+			else if(type=="leave"){
+				div.style.color="red";
+			}
+			else{
+				div.style.color="black";
+			}
+			document.body.appendChild(div);
+		}
+	
+			document.getElementById("sentBtn").onclick=function(){
+			var txt = document.getElementById("sentTxt").value;
+			//如果消息不为空的情况下才可以发送消息
+			if(txt){
+				socket.emit('message',txt);
+			}
+		  }
+		
+		socket.on('enter',function(data){
+           showMessage(data,'enter');
+		})
+		
+		socket.on('message',function(data){
+           showMessage(data,'message');
+		})
+		
+		socket.on('leave',function(data){
+           showMessage(data,'leave');
+		})
+		
+		
+	</script>
+</body>
+</html>

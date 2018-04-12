@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo4</title>
+	<script type="text/javascript" src="socket.io.js"></script>
+</head>
+<body>
+<script>
+  var socket = io('http://localhost:3000');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+
+  //socket.on这个是接受，其中的data就是接收的数据
+</script>
+</body>
+</html>
