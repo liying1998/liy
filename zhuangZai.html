@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>装载问题</title>
+	
+</head>
+<body>
+	
+		请输入鸡蛋的质量：<input type="text"/>
+		<button id="button">确定</button>
+		<button id="result">查询结果</button>
+	
+</body>
+</html>
+<script type="text/javascript">
+  
+
+		window.onload=function(){
+			//这里的w数组是原来的
+
+			//r放的是最后的结果
+			var button = document.getElementById('button');
+			var input = document.getElementsByTagName('input')[0];
+			var result = document.getElementById("result");
+			var w = [];
+			var r = [];
+
+			input.addEventListener('focus',function(){
+				input.value="";
+			});
+			button.addEventListener('click',function(){
+                w.push(parseInt(input.value));
+			});
+			result.addEventListener('click',function(){
+				gongNeng(w);
+			});
+
+
+
+			//这里是对其中的逻辑的处理
+			function gongNeng(obj){
+				var sum=0;
+				//这里实现的是先排序
+				obj.sort(function(a,b){
+					if(a-b>0){
+						return 1;
+					}
+					else{
+						return -1;
+					}
+				});
+
+				for (let i =0 ; i<obj.length; i++) {
+					sum=sum+obj[i];
+					if(sum<=1000){
+						r.push(obj[i]);
+					}
+				}
+				console.log("你能够装的鸡蛋个数为："+r.length+','+"其中的鸡蛋的质量分别是"+r);
+
+			};
+
+	};
+
+
+</script>
+
+
+
+	
